@@ -51,6 +51,54 @@
           "type": "boolean",
           "default": true,
           "description": "Use .gitignore patterns in addition to .commentlinkingignore for filtering files. When enabled, files matching .gitignore patterns will also be excluded from processing."
+        },
+        "commentLinking.anchorColor": {
+          "type": "string",
+          "default": "charts.green",
+          "enum": [
+            "inherit",
+            "charts.green",
+            "charts.blue",
+            "charts.red",
+            "charts.yellow",
+            "charts.orange",
+            "charts.purple"
+          ],
+          "description": "Theme color for anchor decorations. Use 'inherit' to use the comment color from your theme."
+        },
+        "commentLinking.anchorIconEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show icon after anchor text."
+        },
+        "commentLinking.anchorIcon": {
+          "type": "string",
+          "default": "⚓",
+          "description": "Icon to display after anchor text."
+        },
+        "commentLinking.linkColor": {
+          "type": "string",
+          "default": "charts.blue",
+          "enum": [
+            "inherit",
+            "charts.green",
+            "charts.blue",
+            "charts.red",
+            "charts.yellow",
+            "charts.orange",
+            "charts.purple"
+          ],
+          "description": "Theme color for link decorations. Use 'inherit' to use the comment color from your theme."
+        },
+        "commentLinking.linkIconEnabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show icon after link text."
+        },
+        "commentLinking.linkIcon": {
+          "type": "string",
+          "default": "🔗",
+          "description": "Icon to display after link text."
         }
       }
     },

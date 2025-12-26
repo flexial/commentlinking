@@ -9,12 +9,16 @@ export interface DecorationsBundle {
 }
 
 export function createDecorationTypes(context: vscode.ExtensionContext): DecorationsBundle {
+    const config = vscode.workspace.getConfiguration('commentLinking');
+
+    const anchorColor = config.get<string>('anchorColor', 'charts.green');
+    const anchorIconEnabled = config.get<boolean>('anchorIconEnabled', true);
+    const anchorIcon = config.get<string>('anchorIcon', '⚓');
     const anchorTextDecoration = vscode.window.createTextEditorDecorationType({
         fontWeight: '600',
-        color: new vscode.ThemeColor('charts.green'),
+        color: anchorColor !== 'inherit' ? new vscode.ThemeColor(anchorColor) : undefined,
         after: {
-            contentText: '⚓',
-            color: new vscode.ThemeColor('charts.green'),
+            contentText: anchorIconEnabled ? anchorIcon : '',
             margin: '0 0 0 .35em'
         }
     });
@@ -24,12 +28,14 @@ export function createDecorationTypes(context: vscode.ExtensionContext): Decorat
         color: new vscode.ThemeColor('foreground')
     });
 
+    const linkColor = config.get<string>('linkColor', 'charts.blue');
+    const linkIconEnabled = config.get<boolean>('linkIconEnabled', true);
+    const linkIcon = config.get<string>('linkIcon', '🔗');
     const linkTextDecoration = vscode.window.createTextEditorDecorationType({
         fontWeight: '600',
-        color: new vscode.ThemeColor('charts.blue'),
+        color: linkColor !== 'inherit' ? new vscode.ThemeColor(linkColor) : undefined,
         after: {
-            contentText: '🔗',
-            color: new vscode.ThemeColor('charts.blue'),
+            contentText: linkIconEnabled ? linkIcon : '',
             margin: '0 0 0 .35em'
         }
     });
@@ -59,5 +65,3 @@ export function createDecorationTypes(context: vscode.ExtensionContext): Decorat
         hiddenDecoration,
     };
 }
-
-

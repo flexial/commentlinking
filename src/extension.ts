@@ -135,6 +135,17 @@ export function activate(context: vscode.ExtensionContext) {
         provider.debouncedRebuild();
         refreshDecorationsNow();
       }
+      if (
+        e.affectsConfiguration("commentLinking.anchorColor") ||
+        e.affectsConfiguration("commentLinking.anchorIconEnabled") ||
+        e.affectsConfiguration("commentLinking.anchorIcon") ||
+        e.affectsConfiguration("commentLinking.linkColor") ||
+        e.affectsConfiguration("commentLinking.linkIconEnabled") ||
+        e.affectsConfiguration("commentLinking.linkIcon")
+      ) {
+        registerCommentDecorations(context);
+        refreshDecorationsNow();
+      }
     })
   );
 
