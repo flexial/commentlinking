@@ -20,7 +20,7 @@ export function refreshDecorationsNow() {
   }
 }
 
-export function registerCommentDecorations(context: vscode.ExtensionContext) {
+function cleanupDecorations() {
   if (_decorationTypes) {
     for (const editor of vscode.window.visibleTextEditors) {
       editor.setDecorations(_decorationTypes.anchorTextDecoration, []);
@@ -35,6 +35,10 @@ export function registerCommentDecorations(context: vscode.ExtensionContext) {
     _decorationTypes.linkTextActiveDecoration.dispose();
     _decorationTypes.hiddenDecoration.dispose();
   }
+}
+
+export function registerDecorations(context: vscode.ExtensionContext) {
+  cleanupDecorations();
   _decorationTypes = createDecorationTypes(context);
 
   const decorateEditor = async (editor?: vscode.TextEditor) => {
